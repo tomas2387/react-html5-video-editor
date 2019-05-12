@@ -4,7 +4,6 @@ import interact from 'interact.js';
 class CropMarker extends React.Component {
     componentDidMount() {
         function dragMoveListener(event) {
-            console.log(event);
             var target = event.target;
             var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
             var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
@@ -31,10 +30,7 @@ class CropMarker extends React.Component {
                     var target = event.target;
                     const x = parseFloat(target.getAttribute('data-x'));
                     const start = (x / 400) * 100;
-                    this.props.store.dispatch({
-                        type: 'CROPS_CHANGED',
-                        start: start,
-                    });
+                    this.props.cropsChanged('start', start);
                 },
             });
         } else {
@@ -51,19 +47,21 @@ class CropMarker extends React.Component {
                     var target = event.target;
                     const x = parseFloat(target.getAttribute('data-x'));
                     const end = ((400 + x) / 400) * 100;
-                    this.props.store.dispatch({
-                        type: 'CROPS_CHANGED',
-                        end: end,
-                    });
+                    this.props.cropsChanged('end', end);
                 },
             });
         }
     }
 
     render() {
+        let className = 'draggable_end';
+        if (this.props.isStart) {
+            className = 'draggable_start';
+        }
+
         return (
             <div
-                className="start_marker draggable_start"
+                className={'start_marker ' + className}
                 style={{ left: this.props.position + '%' }}>
                 I
             </div>
@@ -74,6 +72,7 @@ class CropMarker extends React.Component {
 CropMarker.propTypes = {
     position: React.PropTypes.number,
     isStart: React.PropTypes.bool,
+    cropsChanged: React.PropTypes.func,
 };
 
 export default CropMarker;

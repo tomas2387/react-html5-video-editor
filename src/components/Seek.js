@@ -1,6 +1,7 @@
 import React from 'react';
 import ProgressBar from './ProgressBar';
 import CropMarker from './CropMarker';
+import { cropChanged } from '../actions/actionCreators';
 
 class Seek extends React.Component {
     constructor(props) {
@@ -19,6 +20,10 @@ class Seek extends React.Component {
         this.setState({
             focused: true,
         });
+    };
+
+    cropsChanged = (where, position) => {
+        this.props.store.dispatch(cropChanged(where, position));
     };
 
     render() {
@@ -40,8 +45,16 @@ class Seek extends React.Component {
                         onChange={this.seek}
                         progress={this.props.percentagePlayed}
                     />
-                    {this.props.crops.map(function(e, index) {
-                        return <CropMarker position={e} key={index} />;
+                    {this.props.crops.map((e, index) => {
+                        let isStart = index === 0;
+                        return (
+                            <CropMarker
+                                position={e}
+                                key={index}
+                                isStart={isStart}
+                                cropsChanged={this.cropsChanged}
+                            />
+                        );
                     })}
                 </div>
             </div>
