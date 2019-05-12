@@ -1,59 +1,59 @@
-import {default as ProgressBar} from './ProgressBar'
-import {default as CropMarker} from './CropMarker'
+import React from 'react';
+import ProgressBar from './ProgressBar';
+import CropMarker from './CropMarker';
 
-var React = require('react');
+class Seek extends React.Component {
+    constructor(props) {
+        super(props);
 
-var Seek = React.createClass({
-
-    propTypes: {
-        seek: React.PropTypes.func,
-        percentageBuffered: React.PropTypes.number,
-        percentagePlayed: React.PropTypes.number,
-        duration: React.PropTypes.number,
-    },
-
-    getInitialState() {
-        return {
-            focused: false
+        this.state = {
+            focused: false,
         };
-    },
+    }
 
-    shouldComponentUpdate(nextProps) {
-      return true;
-    },
+    seek = e => {
+        this.props.seek((e.target.value * this.props.duration) / 100);
+    };
 
-    seek(e) {
-        this.props.seek(e.target.value * this.props.duration / 100);
-    },
-
-    onFocus() {
+    onFocus = () => {
         this.setState({
-            focused: true
+            focused: true,
         });
-    },
+    };
 
     render() {
-        console.log(this.props.crops)
         return (
             <div
-                className={'video-seek video__control' + (this.state.focused
-                    ? ' video__control--focused' : '')}>
+                className={
+                    'video-seek video__control' +
+                    (this.state.focused ? ' video__control--focused' : '')
+                }>
                 <div className="video-seek__container">
-                    <div style={{
-                        width: this.props.percentageBuffered + '%'
-                    }} className="video-seek__buffer-bar">
-                    </div>
+                    <div
+                        style={{
+                            width: this.props.percentageBuffered + '%',
+                        }}
+                        className="video-seek__buffer-bar"
+                    />
                     <ProgressBar
                         onFocus={this.onFocus}
                         onChange={this.seek}
-                        progress={this.props.percentagePlayed} />
-                        {this.props.crops.map(function(e) {
-                                                    return <CropMarker position={e} />
-                                                })}
+                        progress={this.props.percentagePlayed}
+                    />
+                    {this.props.crops.map(function(e, index) {
+                        return <CropMarker position={e} key={index} />;
+                    })}
                 </div>
             </div>
         );
     }
-});
+}
+
+Seek.propTypes = {
+    seek: React.PropTypes.func,
+    percentageBuffered: React.PropTypes.number,
+    percentagePlayed: React.PropTypes.number,
+    duration: React.PropTypes.number,
+};
 
 export default Seek;

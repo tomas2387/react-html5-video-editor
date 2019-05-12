@@ -1,14 +1,7 @@
 import React from 'react';
 import Icon from './Icon';
 
-var Play = React.createClass({
-
-    propTypes: {
-        copyKeys: React.PropTypes.object,
-        togglePlay: React.PropTypes.func,
-        paused: React.PropTypes.bool
-    },
-
+class Play extends React.Component {
     /**
      * As controls receive all props for extensibility, we do a quick
      * check and make sure only the props we care about have changed.
@@ -16,19 +9,33 @@ var Play = React.createClass({
      * @return {boolean}          Whether we re-render or not
      */
     shouldComponentUpdate(nextProps) {
-        return this.props.paused !== nextProps.paused ||
-               this.props.togglePlay !== nextProps.togglePlay;
-    },
+        return (
+            this.props.paused !== nextProps.paused ||
+            this.props.togglePlay !== nextProps.togglePlay
+        );
+    }
 
     render() {
         return (
             <button
                 className="video-play video__control"
-                onClick={()=>{this.props.togglePlay()}}>
-                {this.props.paused ? <Icon name="play-1" /> : <Icon name="pause-1" />}
+                onClick={() => {
+                    this.props.togglePlay();
+                }}>
+                {this.props.paused ? (
+                    <Icon name="play-1" />
+                ) : (
+                    <Icon name="pause-1" />
+                )}
             </button>
         );
     }
-});
+}
+
+Play.propTypes = {
+    copyKeys: React.PropTypes.object,
+    togglePlay: React.PropTypes.func,
+    paused: React.PropTypes.bool,
+};
 
 export default Play;

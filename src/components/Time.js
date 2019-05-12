@@ -1,13 +1,6 @@
 import React from 'react';
-import Icon from './Icon';
 
-var Time = React.createClass({
-
-    propTypes: {
-        currentTime: React.PropTypes.number,
-        duration: React.PropTypes.number
-    },
-
+class Time extends React.Component {
     /**
      * As controls receive all props for extensibility, we do a quick
      * check and make sure only the props we care about have changed.
@@ -15,9 +8,11 @@ var Time = React.createClass({
      * @return {boolean}          Whether we re-render or not
      */
     shouldComponentUpdate(nextProps) {
-        return this.props.currentTime !== nextProps.currentTime ||
-               this.props.duration !== nextProps.duration;
-    },
+        return (
+            this.props.currentTime !== nextProps.currentTime ||
+            this.props.duration !== nextProps.duration
+        );
+    }
 
     /**
      * Formats time into a friendlier format
@@ -29,7 +24,7 @@ var Time = React.createClass({
         seconds = isNaN(seconds) ? 0 : Math.floor(seconds);
         date.setSeconds(seconds);
         return date.toISOString().substr(11, 8);
-    },
+    }
 
     render() {
         return (
@@ -44,6 +39,11 @@ var Time = React.createClass({
             </div>
         );
     }
-});
+}
+
+Time.propTypes = {
+    currentTime: React.PropTypes.number,
+    duration: React.PropTypes.number,
+};
 
 export default Time;

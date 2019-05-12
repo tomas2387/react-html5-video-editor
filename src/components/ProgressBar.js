@@ -1,49 +1,28 @@
-var React = require('react');
+import React from 'react';
 
-var ProgressBar = React.createClass({
-
-    propTypes: {
-        orientation: React.PropTypes.string,
-        step: React.PropTypes.number,
-        progress: React.PropTypes.number,
-        onChange: React.PropTypes.func,
-        onFocus: React.PropTypes.func,
-        onBlur: React.PropTypes.func,
-    },
-
-    shouldComponentUpdate(nextProps) {
-      return true;
-        return this.props.progress !== nextProps.progress;
-    },
-
-    getInitialState() {
-      return {
-      };
-    },
-
-    getDefaultProps() {
-        return {
-            orientation: 'horizontal',
-            step: 0.1,
-            progress: 0,
-            onChange: this.onChange,
-            onFocus: this.onFocus,
-            onBlur: this.onBlur,
-        };
-    },
-
-    onChange(e) {
+class ProgressBar extends React.Component {
+    onChange = e => {
         this.props.onChange(e);
-    },
+    };
 
     render() {
         return (
-            <div id={'video-progress-bar'} className={'video-progress-bar ' + (this.props.orientation === 'horizontal'
-                ? 'video-progress-bar--horizontal' : 'video-progress-bar--vertical')}>
-                <div className="video-progress-bar__fill" style={{
-                    ['width']: this.props.progress + '%', //transition: width 1s ease-in-out;
-                }} />
-                <input className="video-progress-bar__input"
+            <div
+                id={'video-progress-bar'}
+                className={
+                    'video-progress-bar ' +
+                    (this.props.orientation === 'horizontal'
+                        ? 'video-progress-bar--horizontal'
+                        : 'video-progress-bar--vertical')
+                }>
+                <div
+                    className="video-progress-bar__fill"
+                    style={{
+                        ['width']: this.props.progress + '%', //transition: width 1s ease-in-out;
+                    }}
+                />
+                <input
+                    className="video-progress-bar__input"
                     onBlur={this.props.onBlur}
                     onFocus={this.props.onFocus}
                     ref="input"
@@ -52,10 +31,29 @@ var ProgressBar = React.createClass({
                     min="0"
                     max="100"
                     value={this.props.progress}
-                    step={this.props.step} />
+                    step={this.props.step}
+                />
             </div>
         );
     }
-});
+}
+
+ProgressBar.propTypes = {
+    orientation: React.PropTypes.string,
+    step: React.PropTypes.number,
+    progress: React.PropTypes.number,
+    onChange: React.PropTypes.func,
+    onFocus: React.PropTypes.func,
+    onBlur: React.PropTypes.func,
+};
+
+ProgressBar.defaultProps = {
+    orientation: 'horizontal',
+    step: 0.1,
+    progress: 0,
+    onChange: () => {},
+    onFocus: () => {},
+    onBlur: () => {},
+};
 
 export default ProgressBar;

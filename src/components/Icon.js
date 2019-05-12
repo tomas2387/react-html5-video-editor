@@ -1,28 +1,23 @@
-var React = require('react');
+import React from 'react';
 
-var Icon = React.createClass({
+function Icon(props) {
+    return <span className={'video-icon video-icon--' + props.name} />;
+}
 
-    propTypes: {
-        name: React.PropTypes.oneOf([
-          'play-1',
-          'volume-off',
-          'volume-down',
-          'volume-up',
-          'resize-full',
-          'resize-small',
-          'pause-1',
-          'crop',
-          'crop-begin',
-          'crop-end',
-        ])
-    },
-
-    render() {
-        return (
-            <span className={'video-icon video-icon--' + this.props.name}></span>
-        );
-    }
-
-});
+Icon.propTypes = {
+    name: React.PropTypes.oneOf([
+        'play-1',
+        'volume-off',
+        'volume-down',
+        'volume-up',
+        'resize-full',
+        'resize-small',
+        'pause-1',
+        'crop',
+        'crop-begin',
+        'crop-end',
+        'pic',
+    ]),
+};
 
 export default Icon;
