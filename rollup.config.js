@@ -11,10 +11,21 @@ export default {
     output: {
         file: 'dist/react-html5-video-editor.js',
         format: 'cjs',
+        globals: {
+            react: 'React',
+            'react-dom': 'ReactDOM',
+        },
     },
+    external: ['react', 'react-dom'],
+
     plugins: [
         babel({
             exclude: 'node_modules/**',
+        }),
+
+        replace({
+            'process.env.NODE_ENV': JSON.stringify('production'),
+            'window.__REDUX_DEVTOOLS_EXTENSION__': 'false',
         }),
         resolve(),
         commonjs({
@@ -44,10 +55,6 @@ export default {
                 ],
                 'node_modules/react-dom/index.js': ['unstable_batchedUpdates'],
             },
-        }),
-        replace({
-            'process.NODE_ENV': '"production"',
-            'window.__REDUX_DEVTOOLS_EXTENSION__': 'false',
         }),
 
         uglify(),
