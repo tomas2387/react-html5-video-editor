@@ -1,6 +1,7 @@
 import React from 'react';
 import Icon from './Icon';
 import Spinner from './Spinner';
+import PropTypes from 'prop-types';
 
 class Overlay extends React.Component {
     renderContent() {
@@ -55,10 +56,10 @@ class Overlay extends React.Component {
 }
 
 Overlay.propTypes = {
-    error: React.PropTypes.bool,
-    togglePlay: React.PropTypes.func,
-    paused: React.PropTypes.bool,
-    loading: React.PropTypes.bool,
+    error: PropTypes.bool,
+    togglePlay: PropTypes.func,
+    paused: PropTypes.bool,
+    loading: PropTypes.bool,
 };
 
 export default Overlay;

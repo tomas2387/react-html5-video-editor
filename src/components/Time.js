@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Time extends React.Component {
     /**
@@ -42,8 +43,8 @@ class Time extends React.Component {
 }
 
 Time.propTypes = {
-    currentTime: React.PropTypes.number,
-    duration: React.PropTypes.number,
+    currentTime: PropTypes.number,
+    duration: PropTypes.number,
 };
 
 export default Time;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class ProgressBar extends React.Component {
     onChange = e => {
@@ -39,12 +40,12 @@ class ProgressBar extends React.Component {
 }
 
 ProgressBar.propTypes = {
-    orientation: React.PropTypes.string,
-    step: React.PropTypes.number,
-    progress: React.PropTypes.number,
-    onChange: React.PropTypes.func,
-    onFocus: React.PropTypes.func,
-    onBlur: React.PropTypes.func,
+    orientation: PropTypes.string,
+    step: PropTypes.number,
+    progress: PropTypes.number,
+    onChange: PropTypes.func,
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
 };
 
 ProgressBar.defaultProps = {

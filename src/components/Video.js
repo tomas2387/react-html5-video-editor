@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const VIDEO_EVENTS = [
     'onAbort',
@@ -54,7 +55,7 @@ class Video extends React.Component {
                 .map(k => ({ [k]: props[k] }))
         );
 
-        console.log(this.videoProps);
+        this.videoEl = React.createRef();
     }
 
     componentWillMount() {
@@ -99,9 +100,13 @@ class Video extends React.Component {
     }
 
     updateStateFromVideo() {
-        // if (this.videoEl.currentTime  / this.videoEl.duration * 100 > this.props.crops[1]) {
-        //     this.videoEl.currentTime = this.props.crops[0] / 100 * this.videoEl.duration;
-        // }
+        if (
+            (this.videoEl.currentTime / this.videoEl.duration) * 100 >
+            this.props.crops[1]
+        ) {
+            this.videoEl.currentTime =
+                (this.props.crops[0] / 100) * this.videoEl.duration;
+        }
         this.setState({
             // Standard video properties
             duration: this.videoEl.duration,
@@ -193,9 +198,7 @@ class Video extends React.Component {
                     className="video__el"
                     {...this.videoProps}
                     {...this.mediaEventProps}
-                    ref={el => {
-                        this.videoEl = el;
-                    }}>
+                    ref={this.videoEl}>
                     {this.renderSources()}
                 </video>
                 {this.renderControls()}
@@ -205,11 +208,11 @@ class Video extends React.Component {
 }
 
 Video.propTypes = {
-    children: React.PropTypes.node,
-    autoPlay: React.PropTypes.bool,
-    muted: React.PropTypes.bool,
-    controls: React.PropTypes.bool,
-    onTimeUpdate: React.PropTypes.func,
+    children: PropTypes.node,
+    autoPlay: PropTypes.bool,
+    muted: PropTypes.bool,
+    controls: PropTypes.bool,
+    onTimeUpdate: PropTypes.func,
 };
 
 Video.defaultProps = {

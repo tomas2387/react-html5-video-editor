@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Icon(props) {
     return <span className={'video-icon video-icon--' + props.name} />;
 }
 
 Icon.propTypes = {
-    name: React.PropTypes.oneOf([
+    name: PropTypes.oneOf([
         'play-1',
         'volume-off',
         'volume-down',

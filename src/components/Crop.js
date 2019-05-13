@@ -1,5 +1,6 @@
 import React from 'react';
 import Icon from './Icon';
+import PropTypes from 'prop-types';
 
 class Crop extends React.Component {
     /**
@@ -31,8 +32,8 @@ class Crop extends React.Component {
 }
 
 Crop.propTypes = {
-    isStart: React.PropTypes.bool,
-    onClick: React.PropTypes.func,
+    isStart: PropTypes.bool,
+    onClick: PropTypes.func,
 };
 
 export default Crop;

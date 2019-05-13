@@ -2,6 +2,7 @@ import React from 'react';
 import ProgressBar from './ProgressBar';
 import CropMarker from './CropMarker';
 import { cropChanged } from '../actions/actionCreators';
+import PropTypes from 'prop-types';
 
 class Seek extends React.Component {
     constructor(props) {
@@ -63,10 +64,10 @@ class Seek extends React.Component {
 }
 
 Seek.propTypes = {
-    seek: React.PropTypes.func,
-    percentageBuffered: React.PropTypes.number,
-    percentagePlayed: React.PropTypes.number,
-    duration: React.PropTypes.number,
+    seek: PropTypes.func,
+    percentageBuffered: PropTypes.number,
+    percentagePlayed: PropTypes.number,
+    duration: PropTypes.number,
 };
 
 export default Seek;

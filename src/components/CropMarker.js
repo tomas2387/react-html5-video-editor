@@ -1,5 +1,6 @@
 import React from 'react';
 import interact from 'interact.js';
+import PropTypes from 'prop-types';
 
 class CropMarker extends React.Component {
     componentDidMount() {
@@ -68,9 +69,9 @@ class CropMarker extends React.Component {
 }
 
 CropMarker.propTypes = {
-    position: React.PropTypes.number,
-    isStart: React.PropTypes.bool,
-    cropsChanged: React.PropTypes.func,
+    position: PropTypes.number,
+    isStart: PropTypes.bool,
+    cropsChanged: PropTypes.func,
 };
 
 export default CropMarker;

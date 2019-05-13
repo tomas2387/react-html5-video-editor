@@ -1,5 +1,6 @@
 import React from 'react';
 import Icon from './Icon';
+import PropTypes from 'prop-types';
 
 class ImageBtn extends React.Component {
     /**
@@ -25,9 +26,9 @@ class ImageBtn extends React.Component {
 }
 
 ImageBtn.propTypes = {
-    copyKeys: React.PropTypes.object,
-    togglePlay: React.PropTypes.func,
-    paused: React.PropTypes.bool,
+    copyKeys: PropTypes.object,
+    togglePlay: PropTypes.func,
+    paused: PropTypes.bool,
 };
 
 export default ImageBtn;
