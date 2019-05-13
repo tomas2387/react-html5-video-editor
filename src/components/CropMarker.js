@@ -8,14 +8,12 @@ class CropMarker extends React.Component {
             var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
             var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
-            target.style.webkitTransform = target.style.transform =
-                'translate(' + x + 'px, ' + y + 'px)';
+            target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
 
             target.setAttribute('data-x', x);
             target.setAttribute('data-y', y);
         }
 
-        window.dragMoveListener = dragMoveListener;
         if (this.props.isStart) {
             interact('.draggable_start').draggable({
                 inertia: true,
@@ -30,7 +28,7 @@ class CropMarker extends React.Component {
                     var target = event.target;
                     const x = parseFloat(target.getAttribute('data-x'));
                     const start = (x / 400) * 100;
-                    this.props.cropsChanged('start', start);
+                    // this.props.cropsChanged('start', start);
                 },
             });
         } else {
@@ -47,7 +45,7 @@ class CropMarker extends React.Component {
                     var target = event.target;
                     const x = parseFloat(target.getAttribute('data-x'));
                     const end = ((400 + x) / 400) * 100;
-                    this.props.cropsChanged('end', end);
+                    // this.props.cropsChanged('end', end);
                 },
             });
         }

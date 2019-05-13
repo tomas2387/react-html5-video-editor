@@ -1,6 +1,4 @@
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actionCreators from './actions/actionCreators';
 import Video from './components/Video';
 import Controls from './components/Controls';
 import Overlay from './components/Overlay';
@@ -22,7 +20,7 @@ function render_editor(
     vid_path = 'src/video/small.mp4'
 ) {
     ReactDOM.render(
-        <RdxVideo autoPlay loop muted poster={poster} store={store}>
+        <RdxVideo loop muted poster={poster} store={store}>
             <Overlay />
             <Controls />
             <source src={vid_path} type="video/mp4" />

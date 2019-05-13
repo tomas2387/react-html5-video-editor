@@ -18,6 +18,7 @@
 
 .start_marker, .end_marker {
     cursor: move;
+    z-index: 999999;
 }
 
 /*.video-icon--crop:before {
