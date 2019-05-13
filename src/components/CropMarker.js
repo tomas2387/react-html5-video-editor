@@ -5,14 +5,13 @@ import PropTypes from 'prop-types';
 class CropMarker extends React.Component {
     componentDidMount() {
         function dragMoveListener(event) {
-            var target = event.target;
-            var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
-            var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+            const target = event.target;
+            const x =
+                (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
 
-            target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+            target.style.transform = 'translate(' + x + 'px, 0px)';
 
             target.setAttribute('data-x', x);
-            target.setAttribute('data-y', y);
         }
 
         if (this.props.isStart) {
@@ -27,9 +26,10 @@ class CropMarker extends React.Component {
                 onmove: dragMoveListener,
                 onend: event => {
                     var target = event.target;
-                    const x = parseFloat(target.getAttribute('data-x'));
-                    const start = (x / 400) * 100;
-                    // this.props.cropsChanged('start', start);
+                    this.props.cropsChanged(
+                        'start',
+                        parseFloat(target.getAttribute('data-x'))
+                    );
                 },
             });
         } else {
@@ -44,25 +44,35 @@ class CropMarker extends React.Component {
                 onmove: dragMoveListener,
                 onend: event => {
                     var target = event.target;
-                    const x = parseFloat(target.getAttribute('data-x'));
-                    const end = ((400 + x) / 400) * 100;
-                    // this.props.cropsChanged('end', end);
+                    this.props.cropsChanged(
+                        'end',
+                        parseFloat(target.getAttribute('data-x'))
+                    );
                 },
             });
         }
     }
 
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        return this.props.position !== nextProps.position;
+    }
+
     render() {
-        let className = 'draggable_end';
+        let className = 'end_marker draggable_end';
+        let content = '<';
         if (this.props.isStart) {
-            className = 'draggable_start';
+            className = 'start_marker draggable_start';
+            content = '>';
         }
 
         return (
             <div
-                className={'start_marker ' + className}
-                style={{ left: this.props.position + '%' }}>
-                I
+                className={className}
+                style={{
+                    transform: 'translate(' + this.props.position + 'px, 0px)',
+                }}
+                data-x={this.props.position}>
+                {content}
             </div>
         );
     }

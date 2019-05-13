@@ -19,11 +19,13 @@ module.exports = {
     //   new webpack.HotModuleReplacementPlugin()
     // ],
     module: {
-        loaders: [
+        rules: [
             {
-                test: /\.js$/,
-                loaders: ['babel'],
-                include: path.join(__dirname, 'src'),
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                },
             },
         ],
     },

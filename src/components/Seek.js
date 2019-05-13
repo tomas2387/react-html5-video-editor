@@ -46,17 +46,17 @@ class Seek extends React.Component {
                         onChange={this.seek}
                         progress={this.props.percentagePlayed}
                     />
-                    {this.props.crops.map((e, index) => {
-                        let isStart = index === 0;
-                        return (
-                            <CropMarker
-                                position={e}
-                                key={index}
-                                isStart={isStart}
-                                cropsChanged={this.cropsChanged}
-                            />
-                        );
-                    })}
+
+                    <CropMarker
+                        position={this.props.crop_start}
+                        isStart={true}
+                        cropsChanged={this.cropsChanged}
+                    />
+                    <CropMarker
+                        position={this.props.crop_end}
+                        isStart={false}
+                        cropsChanged={this.cropsChanged}
+                    />
                 </div>
             </div>
         );
@@ -68,6 +68,11 @@ Seek.propTypes = {
     percentageBuffered: PropTypes.number,
     percentagePlayed: PropTypes.number,
     duration: PropTypes.number,
+};
+
+Seek.defaultProps = {
+    percentageBuffered: 0,
+    percentagePlayed: 0,
 };
 
 export default Seek;

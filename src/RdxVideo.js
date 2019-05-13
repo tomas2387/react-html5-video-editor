@@ -1,19 +1,9 @@
-import { connect } from 'react-redux';
-import Video from './components/Video';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { RdxVideo } from './components/Video';
 import Controls from './components/Controls';
 import Overlay from './components/Overlay';
 import store from './store';
-
-function mapStateToProps(state) {
-    return {
-        crops: state.crops,
-    };
-}
-
-const RdxVideo = connect(mapStateToProps)(Video);
-
-var React = require('react');
-var ReactDOM = require('react-dom');
 
 function render_editor(
     poster = 'src/img/poster.png',
