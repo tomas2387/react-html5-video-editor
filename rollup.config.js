@@ -36,24 +36,24 @@ export default {
             // these values can also be regular expressions
             // include: /node_modules/
             namedExports: {
-                'node_modules/react/index.js': [
-                    'Component',
-                    'PureComponent',
-                    'Fragment',
-                    'Children',
-                    'createElement',
-                    'useLayoutEffect',
-                    'useEffect',
-                    'useContext',
-                    'useMemo',
-                    'useRef',
-                    'useReducer',
-                ],
+                //     'node_modules/react/index.js': [
+                //         'Component',
+                //         'PureComponent',
+                //         'Fragment',
+                //         'Children',
+                //         'createElement',
+                //         'useLayoutEffect',
+                //         'useEffect',
+                //         'useContext',
+                //         'useMemo',
+                //         'useRef',
+                //         'useReducer',
+                //     ],
                 'node_modules/react-is/index.js': [
                     'isValidElementType',
                     'isContextConsumer',
                 ],
-                'node_modules/react-dom/index.js': ['unstable_batchedUpdates'],
+                //     'node_modules/react-dom/index.js': ['unstable_batchedUpdates'],
             },
         }),
 
