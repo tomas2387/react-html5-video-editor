@@ -10,13 +10,13 @@ const store = createStore(
     rootReducer,
     defaultState,
     compose(
-        window.__REDUX_DEVTOOLS_EXTENSION__
+        window.__REDUX_DEVTOOLS_EXTENSION__ && process.NODE_ENV !== 'production'
             ? window.__REDUX_DEVTOOLS_EXTENSION__()
             : f => f
     )
 );
 
-if (module.hot) {
+if (process.NODE_ENV !== 'production' && module.hot) {
     module.hot.accept('./reducers/', () => {
         const nextRootReducer = require('./reducers/index').default;
         store.replaceReducer(nextRootReducer);

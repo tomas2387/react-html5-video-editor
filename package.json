@@ -5,7 +5,7 @@
   "main": "./dist/react-html5-video-editor.js",
   "scripts": {
     "start": "webpack-dev-server --open --mode development",
-    "prepare": "webpack --mode production"
+    "prepare": "NODE_ENV=production rollup -c --environment PRODUCTION"
   },
   "repository": {
     "type": "git",
@@ -39,6 +39,12 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
     "prettier": "^1.17.0",
+    "rollup": "^1.11.3",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-node-resolve": "^4.2.4",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-uglify": "^6.0.2",
     "webpack": "^4.31.0",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.3.1"
@@ -50,5 +56,6 @@
     "react-redux": "^7.0.3",
     "redux": "^4.0.1",
     "prop-types": "^15.7.2"
-  }
+  },
+  "module": "dist/react-video-editor.es.js"
 }

@@ -4,8 +4,8 @@ var webpack = require('webpack');
 module.exports = {
     devtool: 'eval',
     entry: [
-        // 'webpack-dev-server/client?http://localhost:3000',
-        // 'webpack/hot/only-dev-server',
+        'webpack-dev-server/client?http://localhost:3000',
+        'webpack/hot/only-dev-server',
         './src/RdxVideo',
     ],
     output: {
@@ -15,9 +15,7 @@ module.exports = {
         library: 'ReactHtml5VideoEditor',
         publicPath: '/static/',
     },
-    // plugins: [
-    //   new webpack.HotModuleReplacementPlugin()
-    // ],
+    plugins: [new webpack.HotModuleReplacementPlugin()],
     module: {
         rules: [
             {
