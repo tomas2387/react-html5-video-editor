@@ -32,28 +32,14 @@ export default {
             // non-CommonJS modules will be ignored, but you can also
             // specifically include/exclude files
             include: 'node_modules/**', // Default: undefined
-            // exclude: ['node_modules/foo/**', 'node_modules/bar/**'], // Default: undefined
+            exclude: ['node_modules/react/**', 'node_modules/react-dom/**'], // Default: undefined
             // these values can also be regular expressions
             // include: /node_modules/
             namedExports: {
-                //     'node_modules/react/index.js': [
-                //         'Component',
-                //         'PureComponent',
-                //         'Fragment',
-                //         'Children',
-                //         'createElement',
-                //         'useLayoutEffect',
-                //         'useEffect',
-                //         'useContext',
-                //         'useMemo',
-                //         'useRef',
-                //         'useReducer',
-                //     ],
                 'node_modules/react-is/index.js': [
                     'isValidElementType',
                     'isContextConsumer',
                 ],
-                //     'node_modules/react-dom/index.js': ['unstable_batchedUpdates'],
             },
         }),
 
